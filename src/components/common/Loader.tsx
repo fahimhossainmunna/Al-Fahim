@@ -1,0 +1,88 @@
+"use client";
+
+import React from "react";
+
+export default function Loader() {
+  return (
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-[#0A0A0A] transition-colors duration-300">
+      {/* Uiverse.io by dovatgabriel - Styled with Tailwind Extended CSS */}
+      <div className="newtons-cradle">
+        <div className="newtons-cradle__dot"></div>
+        <div className="newtons-cradle__dot"></div>
+        <div className="newtons-cradle__dot"></div>
+        <div className="newtons-cradle__dot"></div>
+      </div>
+
+      <style jsx>{`
+        .newtons-cradle {
+          --uib-size: 60px;
+          --uib-speed: 1.2s;
+          --uib-color: currentColor; /* ডার্ক/লাইট মোড অনুযায়ী কালার চেঞ্জ হবে */
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: var(--uib-size);
+          height: var(--uib-size);
+          @apply text-black dark:text-white;
+        }
+
+        .newtons-cradle__dot {
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          width: 25%;
+          transform-origin: center top;
+        }
+
+        .newtons-cradle__dot::after {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 25%;
+          border-radius: 50%;
+          background-color: var(--uib-color);
+        }
+
+        .newtons-cradle__dot:first-child {
+          animation: swing var(--uib-speed) linear infinite;
+        }
+
+        .newtons-cradle__dot:last-child {
+          animation: swing2 var(--uib-speed) linear infinite;
+        }
+
+        @keyframes swing {
+          0% {
+            transform: rotate(0deg);
+            animation-timing-function: ease-out;
+          }
+          25% {
+            transform: rotate(70deg);
+            animation-timing-function: ease-in;
+          }
+          50% {
+            transform: rotate(0deg);
+            animation-timing-function: linear;
+          }
+        }
+
+        @keyframes swing2 {
+          0% {
+            transform: rotate(0deg);
+            animation-timing-function: linear;
+          }
+          50% {
+            transform: rotate(0deg);
+            animation-timing-function: ease-out;
+          }
+          75% {
+            transform: rotate(-70deg);
+            animation-timing-function: ease-in;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
