@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layouts/Navbar";
 import { Providers } from "./providers";
+import RouteLoader from "@/components/common/RouteLoader"; // 👈 ১. ইমপোর্ট করুন
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,6 +32,8 @@ export default function RootLayout({
         className={`${inter.variable} ${cormorant.variable} antialiased font-sans bg-[#FCFCFC] text-black dark:bg-[#0A0A0A] dark:text-white transition-colors duration-300 m-0 p-0`}
       >
         <Providers>
+          {/* 👈 ২. এখানে RouteLoader বসিয়ে দিন */}
+          <RouteLoader />
           <Navbar />
           {children}
         </Providers>
