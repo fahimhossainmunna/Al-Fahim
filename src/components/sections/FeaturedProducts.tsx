@@ -1,21 +1,15 @@
 "use client";
 
-import React from "react";
+import { useProductSlider } from "@/hooks/useProductSlider";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useProductSlider } from "@/hooks/useProductSlider";
 import { Button } from "../ui/Button";
 import { ProductButton } from "../ui/ProductButton";
 
 export default function FeaturedProducts() {
-  const {
-    products,
-    currentIndex,
-    loading,
-    handleNext,
-    handlePrev,
-  } = useProductSlider(10000);
+  const { products, currentIndex, loading, handleNext, handlePrev } =
+    useProductSlider(10000);
 
   if (loading) {
     return (
@@ -34,12 +28,10 @@ export default function FeaturedProducts() {
 
   return (
     <section className="relative w-full py-16 md:py-24 bg-white dark:bg-[#0A0A0A] text-neutral-900 dark:text-neutral-100 overflow-hidden border-t border-black/5 dark:border-white/5 transition-colors duration-500">
-
       {/* সূক্ষ্ম ব্যাকগ্রাউন্ড টেক্সচার */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle_at_1px_1px,_#000_1px,_transparent_0)] dark:bg-[radial-gradient(circle_at_1px_1px,_#fff_1px,_transparent_0)] [background-size:24px_24px]" />
 
       <div className="relative max-w-[1440px] mx-auto px-6 md:px-12">
-
         {/* সেকশন হেডার ও নেভিগেশন বাটন */}
         <div className="flex items-end justify-between mb-8 md:mb-12">
           <div>
@@ -104,18 +96,13 @@ export default function FeaturedProducts() {
         <div className="mt-12 md:mt-16 flex justify-center">
           <Link href="/products">
             <Button
-              hoverText={
-                <span className="flex items-center justify-center gap-2 font-bold uppercase tracking-[0.2em] text-xs w-full">
-                  Explore Catalog →
-                </span>
-              }
+              hoverText={"Explore Catalog →"}
               className="px-8 py-3.5 text-xs uppercase tracking-[0.2em] font-bold bg-transparent text-black dark:text-white border border-black/20 dark:border-white/20 hover:border-[#C9A961] dark:hover:border-[#C9A961] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black rounded-sm transition-all duration-300"
             >
               <span>View All Products</span>
             </Button>
           </Link>
         </div>
-
       </div>
     </section>
   );
@@ -135,7 +122,6 @@ function ProductCard({
 }) {
   return (
     <div className="group flex flex-col justify-between h-full bg-white dark:bg-[#111] border border-black/10 dark:border-white/10 hover:border-[#C9A961]/50 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-[0_20px_45px_-15px_rgba(0,0,0,0.25)]">
-      
       {/* ইমেজে ক্লিক করলে ডিটেইলস পেজে যাবে */}
       <Link href={`/products/${product.id}`} className="block">
         <div className="relative w-full aspect-[4/5] bg-neutral-50 dark:bg-[#181818] overflow-hidden">
@@ -156,7 +142,10 @@ function ProductCard({
       </Link>
 
       {/* প্রোডাক্ট ইনফো (নামে ক্লিক করলেও ডিটেইলসে যাবে) */}
-      <Link href={`/products/${product.id}`} className="flex flex-col gap-1 px-3.5 pt-3.5">
+      <Link
+        href={`/products/${product.id}`}
+        className="flex flex-col gap-1 px-3.5 pt-3.5"
+      >
         <span className="text-[8px] uppercase tracking-[0.25em] text-neutral-400 font-medium">
           {product.category}
         </span>
@@ -172,18 +161,13 @@ function ProductCard({
       <div className="p-3.5 pt-3">
         <Link href={`/products/${product.id}`} className="block w-full">
           <ProductButton
-            hoverText={
-              <span className="flex items-center gap-1">
-                View Details <span className="text-xs">→</span>
-              </span>
-            }
+            hoverText={"View Details →"}
             className="w-full py-2.5 text-[11px] uppercase tracking-[0.15em] rounded-sm"
           >
             <span>View Product</span>
           </ProductButton>
         </Link>
       </div>
-
     </div>
   );
 }
