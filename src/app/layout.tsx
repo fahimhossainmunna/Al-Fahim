@@ -3,7 +3,8 @@ import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layouts/Navbar";
 import { Providers } from "./providers";
-import RouteLoader from "@/components/common/RouteLoader"; // 👈 ১. ইমপোর্ট করুন
+import RouteLoader from "@/components/common/RouteLoader";
+import { Toaster } from "react-hot-toast"; // 👈 ১. Toaster ইমপোর্ট করা হয়েছে
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,10 +33,29 @@ export default function RootLayout({
         className={`${inter.variable} ${cormorant.variable} antialiased font-sans bg-[#FCFCFC] text-black dark:bg-[#0A0A0A] dark:text-white transition-colors duration-300 m-0 p-0`}
       >
         <Providers>
-          {/* 👈 ২. এখানে RouteLoader বসিয়ে দিন */}
           <RouteLoader />
           <Navbar />
           {children}
+
+          {/* 👈 ২. Top-Center Positioned Hot Toast Container */}
+          <Toaster
+            position="top-center"
+            reverseOrder={false}
+            toastOptions={{
+              duration: 2500,
+              style: {
+                background: "#000000",
+                color: "#ffffff",
+                border: "1px solid #262626",
+                borderRadius: "9999px",
+                padding: "10px 20px",
+                fontSize: "12px",
+                letterSpacing: "0.05em",
+                fontWeight: "600",
+                boxShadow: "0 10px 30px -10px rgba(0,0,0,0.5)",
+              },
+            }}
+          />
         </Providers>
       </body>
     </html>

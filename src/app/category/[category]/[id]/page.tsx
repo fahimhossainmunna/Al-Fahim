@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { useCartStore } from "@/store/useCartStore";
 import { motion } from "framer-motion";
 import {
   ChevronRight,
@@ -30,12 +31,15 @@ export default function NestedCategoryPage({
   const resolvedParams = use(params);
   const { category, id } = resolvedParams;
 
+  // Zustand Store
+  const addToCart = useCartStore((state) => state.addToCart);
+
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPrice, setSelectedPrice] = useState<number>(5000);
   const [onlyNew, setOnlyNew] = useState<boolean>(false);
 
-  // 🚀 Mouse Follower States
+  // Mouse Follower States
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
 
@@ -66,11 +70,19 @@ export default function NestedCategoryPage({
 
   const hasActiveFilters = selectedPrice < 5000 || onlyNew;
 
+  // Add to Cart handler - Integrated with Zustand Store
   const handleAddToCart = (e: React.MouseEvent, product: Product) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Added to cart:", product);
-    alert(`${product.name} added to cart!`);
+
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category,
+      quantity: 1,
+    });
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -262,7 +274,7 @@ export default function NestedCategoryPage({
                     transition={{ duration: 0.5, delay: index * 0.05 }}
                     className="group/card relative border border-black/10 dark:border-white/10 bg-neutral-50 dark:bg-[#0A0A0A] p-3 hover:border-black/30 dark:hover:border-white/30 transition-colors duration-500"
                   >
-                    {/* Image Container */}
+                    {/* Image Container with Link to Details Page */}
                     <div
                       className="relative w-full h-[360px] overflow-hidden bg-neutral-200 dark:bg-[#151515]"
                       onMouseMove={handleMouseMove}
@@ -270,12 +282,12 @@ export default function NestedCategoryPage({
                       onMouseLeave={() => setHoveredCardId(null)}
                     >
                       {product.isNew && (
-                        <span className="absolute top-3 left-3 z-10 text-[8px] tracking-[0.25em] uppercase bg-black dark:bg-white text-white dark:text-black px-2.5 py-1 font-bold">
+                        <span className="absolute top-3 left-3 z-10 text-[8px] tracking-[0.25em] uppercase bg-black dark:bg-white text-white dark:text-black px-2.5 py-1 font-bold pointer-events-none">
                           NEW
                         </span>
                       )}
 
-                      {/* 🚀 Mouse Follower Logo */}
+                      {/* Mouse Follower Logo */}
                       {hoveredCardId === product.id && (
                         <motion.div
                           className="pointer-events-none absolute z-30 -translate-x-1/2 -translate-y-1/2"
@@ -300,18 +312,23 @@ export default function NestedCategoryPage({
                         </motion.div>
                       )}
 
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover object-top grayscale-[10%] group-hover/card:grayscale-0 group-hover/card:scale-105 transition-all duration-500"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
+                      <Link
+                        href={`/products/${product.id}`}
+                        className="block w-full h-full"
+                      >
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover object-top grayscale-[10%] group-hover/card:grayscale-0 group-hover/card:scale-105 transition-all duration-500"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      </Link>
 
                       {/* Card Hover Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                      {/* Cikon Add to Cart Button */}
+                      {/* Add to Cart Button */}
                       <div
                         className="absolute bottom-3 left-3 right-3 z-40 translate-y-4 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300 ease-out"
                         onClick={(e) => handleAddToCart(e, product)}
@@ -332,14 +349,16 @@ export default function NestedCategoryPage({
                       </div>
                     </div>
 
-                    {/* Details */}
+                    {/* Details Container */}
                     <div className="mt-4 space-y-1 px-1 pb-1">
                       <span className="text-[8px] tracking-[0.3em] uppercase text-neutral-500 font-semibold">
                         {product.category}
                       </span>
-                      <h3 className="font-serif text-lg uppercase tracking-wide text-black dark:text-white">
-                        {product.name}
-                      </h3>
+                      <Link href={`/products/${product.id}`} className="block">
+                        <h3 className="font-serif text-lg uppercase tracking-wide text-black dark:text-white hover:underline transition-all">
+                          {product.name}
+                        </h3>
+                      </Link>
                       <div className="flex items-center justify-between pt-1">
                         <p className="text-xs font-semibold text-black dark:text-white">
                           ৳ {product.price.toLocaleString("en-BD")} BDT

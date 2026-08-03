@@ -144,10 +144,10 @@ export default function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
           >
             <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.3, ease: "easeOut" }}>
-              <Link href="/shop"><Button hoverText="Discover">Shop Collection</Button></Link>
+              <Link href="/products"><Button hoverText="Discover">Shop Collection</Button></Link>
             </motion.div>
             <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.3, ease: "easeOut" }}>
-              <Link href="/collections"><Button hoverText="View All">Explore Lookbook</Button></Link>
+              <Link href="/about"><Button hoverText="View All">Explore Lookbook</Button></Link>
             </motion.div>
           </motion.div>
         </div>
