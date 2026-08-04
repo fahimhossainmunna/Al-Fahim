@@ -6,6 +6,7 @@ import { Footer } from "@/components/layouts/Footer";
 import { Providers } from "./providers";
 import RouteLoader from "@/components/common/RouteLoader";
 import { Toaster } from "react-hot-toast";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
             }}
           />
         </Providers>
+        <ScrollToTop/>
       </body>
     </html>
   );

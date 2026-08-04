@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   RiInstagramLine, 
   RiPinterestLine, 
@@ -9,18 +10,24 @@ import {
   RiFacebookFill,
   RiSendPlane2Line, 
   RiShieldCheckLine, 
-  RiFileTextLine 
+  RiFileTextLine,
+  RiCheckboxCircleLine
 } from "react-icons/ri";
 import { footerSections } from "@/data/footer-data";
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      alert("Thank you for joining AL-FAHIM.");
+      // Toast দেখানো এবং ৩ সেকেন্ড পর বন্ধ করা
+      setShowToast(true);
       setEmail("");
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
     }
   };
 
@@ -32,7 +39,31 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t border-black/10 dark:border-white/10 bg-white dark:bg-black text-black dark:text-white transition-colors pt-20 pb-10 overflow-hidden">
+    <footer className="relative border-t border-black/10 dark:border-white/10 bg-white dark:bg-black text-black dark:text-white transition-colors pt-20 pb-10 overflow-hidden">
+      
+      {/* --- Toast Notification --- */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed bottom-8 right-8 z-50 flex items-center gap-3 bg-black dark:bg-white text-white dark:text-black px-5 py-3.5 shadow-2xl rounded-none border border-white/20 dark:border-black/20"
+          >
+            <RiCheckboxCircleLine className="w-5 h-5 text-emerald-400 dark:text-emerald-600" />
+            <div className="flex flex-col">
+              <span className="text-xs font-sans uppercase tracking-[0.2em] font-semibold">
+                Subscribed
+              </span>
+              <span className="text-xs font-serif opacity-80">
+                Welcome to AL-FAHIM private list.
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
         
         {/* 1. Main Header & Editorial Statement */}
@@ -46,7 +77,7 @@ export function Footer() {
             </h2>
           </div>
           
-          <p className="text-sm font-serif italic text-neutral-600 dark:text-neutral-400 max-w-sm font-light leading-relaxed tracking-wide">
+          <p className="text-sm font-serif text-neutral-600 dark:text-neutral-400 max-w-sm font-light leading-relaxed tracking-wide">
             Defined by uncompromising quality, precision tailoring, and timeless aesthetic excellence.
           </p>
         </div>
@@ -117,7 +148,7 @@ export function Footer() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
                     required
-                    className="w-full bg-transparent border-b border-black/20 dark:border-white/20 pb-2.5 text-sm font-serif italic tracking-wide placeholder:text-neutral-400 focus:outline-none focus:border-black dark:focus:border-white transition-colors pr-10"
+                    className="w-full bg-transparent border-b border-black/20 dark:border-white/20 pb-2.5 text-sm font-serif  tracking-wide placeholder:text-neutral-400 focus:outline-none focus:border-black dark:focus:border-white transition-colors pr-10"
                   />
                   <button
                     type="submit"
@@ -127,7 +158,7 @@ export function Footer() {
                     <RiSendPlane2Line className="w-4 h-4" />
                   </button>
                 </div>
-                <p className="text-xs font-serif italic text-neutral-400 leading-relaxed">
+                <p className="text-xs font-serif text-neutral-400 leading-relaxed">
                   Receive private invitations to new collections & exclusive releases.
                 </p>
               </form>
@@ -139,7 +170,7 @@ export function Footer() {
 
       </div>
 
-      {/* 3. Full-Width Giant Branding Banner (Edge-to-Edge) */}
+      {/* 3. Full-Width Giant Branding Banner */}
       <div className="w-full border-t border-black/10 dark:border-white/10 select-none text-center pt-2 -mb-2 leading-none overflow-hidden">
         <h1 className="text-[15.5vw] font-black tracking-tighter leading-none uppercase text-black dark:text-white font-sans opacity-95 w-full whitespace-nowrap">
           AL-FAHIM.
