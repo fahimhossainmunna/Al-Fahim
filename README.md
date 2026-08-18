@@ -85,3 +85,54 @@ src/
     └── logo/
         ├── fahimOne.png
         └── fahimTwo.png
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/fahimhossainmunna/Al-Fahim.git
+cd Al-Fahim
+```
+
+### 2. Pull Remote Changes
+
+```bash
+git pull origin main
+```
+
+### 3. Install Dependencies
+
+```bash
+npm install
+```
+
+### 4. Run Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to explore the atelier.
+
+---
+
+## 📜 Available Scripts
+
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Launches development server with Turbopack acceleration |
+| `npm run build` | Compiles and builds the application for production |
+| `npm run start` | Boots the local production build server |
+| `npm run lint` | Runs ESLint analysis for code quality |
+
+---
+
+<div align="center">
+
+  <sub>Designed & Developed with precision for <strong>AL-FAHIM</strong>. Released under the MIT License.</sub>
+
+</div>
