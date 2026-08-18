@@ -63,3 +63,37 @@ src/
     └── logo/
         ├── fahimOne.png
         └── fahimTwo.png
+
+
+🚀 Getting Started
+Prerequisites
+Ensure you have Node.js 18+ installed on your system.
+
+Installation
+Clone the repository:
+
+Bash
+git clone [https://github.com/fahimhossainmunna/Al-Fahim.git](https://github.com/fahimhossainmunna/Al-Fahim.git)
+cd Al-Fahim
+Install project dependencies:
+
+Bash
+npm install
+Start the local development server:
+
+Bash
+npm run dev
+Launch Application:
+Open http://localhost:3000 in your browser.
+
+🛠️ Available Scripts
+npm run dev — Starts the Next.js development server with Turbopack.
+
+npm run build — Compiles and builds the production application.
+
+npm run start — Boots the production server.
+
+npm run lint — Runs ESLint checks for code consistency.
+
+📄 License
+This project is open source and available under the MIT License.
