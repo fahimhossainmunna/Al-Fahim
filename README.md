@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="public/logo/fahimOne.png" width="120" alt="AL-FAHIM Logo"/>
+  <img src="public/logo/fahimTwo.png" width="120" alt="AL-FAHIM Logo"/>
 
   # AL-FAHIM
   ### Haute Couture & Luxury Fashion Atelier
