@@ -1,8 +1,9 @@
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:1a1a1a&height=220&section=header&text=AL-FAHIM&fontSize=65&fontAlignY=38&fontColor=ffffff&desc=Haute%20Couture%20%26%20Luxury%20Fashion%20Atelier&descSize=16&descAlignY=58&descAlign=50" width="100%" alt="AL-FAHIM Banner"/>
+  <img src="public/logo/fahimOne.png" width="120" alt="AL-FAHIM Logo"/>
 
-  <br/>
+  # AL-FAHIM
+  ### Haute Couture & Luxury Fashion Atelier
 
   [![Next.js](https://img.shields.io/badge/Next.js%2015-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
   [![TypeScript](https://img.shields.io/badge/TypeScript%205-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
